@@ -42,6 +42,13 @@ app.use(cors());
 
 
 //Routes Setup
+app.get("/", (req, res) => {
+    res.json({
+        service: "Real-Time Chat API",
+        status: "online",
+        healthCheck: "/api/status",
+    });
+});
 app.get("/api/status", (req, res)=> {
     const databaseConnected = mongoose.connection.readyState === 1;
     res.status(databaseConnected ? 200 : 503).json({
